@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/squareImageView0"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/kare"
+        android:layout_marginLeft="42dp"
+        android:visibility="visible"
+        android:layout_below="@id/squareImageView1"/>
+
+    <ImageView
+        android:id="@+id/squareImageView1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/kare"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/squareImageView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="42dp"
+        android:layout_below="@id/squareImageView0"
+        android:background="@drawable/kare"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/squareImageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@id/squareImageView1"
+        android:layout_marginTop="280dp"
+        android:background="@drawable/kare"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/squareImageView4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="280dp"
+        android:layout_toEndOf="@id/squareImageView3"
+        android:background="@drawable/kare" />
+    <ImageView
+        android:id="@+id/squareImageView5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@id/squareImageView0"
+        android:layout_below="@+id/squareImageView3"
+        android:background="@drawable/kare"/>
+    <ImageView
+        android:id="@+id/squareImageView6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@id/squareImageView5"
+        android:layout_below="@+id/squareImageView4"
+        android:background="@drawable/kare"/>
+    <ImageView
+        android:id="@+id/squareImageView7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@+id/squareImageView2"
+        android:layout_below="@+id/squareImageView5"
+        android:background="@drawable/kare"/>
+    <ImageView
+        android:id="@+id/squareImageView8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_toEndOf="@+id/squareImageView7"
+        android:layout_below="@id/squareImageView6"
+        android:background="@drawable/kare"/>
+    <Button
+        android:id="@+id/StartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Game"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"/>
+    <TextView
+        android:id="@+id/skor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/squareImageView7"/>
+
+
+
+
+
+
+</RelativeLayout>
