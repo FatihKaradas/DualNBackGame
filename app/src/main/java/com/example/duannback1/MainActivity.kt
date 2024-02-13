@@ -8,7 +8,10 @@ import android.os.Looper
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import java.util.*
+import kotlin.collections.HashSet
+
 private lateinit var StartButton:Button
 private lateinit var squareImageView0:ImageView
 private lateinit var squareImageView1:ImageView
@@ -20,13 +23,14 @@ private lateinit var squareImageView6:ImageView
 private lateinit var squareImageView7:ImageView
 private lateinit var squareImageView8:ImageView
  private var stepCount=0
- private var counter = 0
+ private var counter:Int = 0
+ private var counter2:Int = 0
+ private var counter3:Double = 0.00
+ private var counter4:Int = 0
  private lateinit var  skor:TextView
-
-
 class MainActivity : AppCompatActivity() {
     private val squareImageViews = arrayOfNulls<ImageView>(9)
-    private val numbers = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+    private val numbers = intArrayOf(0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -40,45 +44,179 @@ class MainActivity : AppCompatActivity() {
         squareImageViews[6] = findViewById(R.id.squareImageView6)
         squareImageViews[7] = findViewById(R.id.squareImageView7)
         squareImageViews[8] = findViewById(R.id.squareImageView8)
+        /* squareImageView0.isClickable=false
+        squareImageView1.isClickable=false
+        squareImageView2.isClickable=false
+        squareImageView3.isClickable=false
+        squareImageView4.isClickable=false
+        squareImageView5.isClickable=false
+        squareImageView6.isClickable=false
+        squareImageView7.isClickable=false
+        squareImageView8.isClickable=false*/
         StartButton = findViewById(R.id.StartButton)
         StartButton.setOnClickListener{
             startGame()
         }
-
-
-
     }
     private fun startGame() {
-        skor.text="Score:0"
+        skor.text="Success Rate:"
         counter=0
+        counter2 = 0
+        counter3 = 0.00
         stepCount = 0
+        counter4 = 0
         showNextStep()
     }
-    private fun showNextStep(){
-        if(stepCount<20){
+    private val previousNumbers = mutableMapOf<Int, HashSet<Int>>()
+
+    private fun showNextStep() {
+        if (stepCount < 10) {
+            squareImageView0=findViewById(R.id.squareImageView0)
+            squareImageView1=findViewById(R.id.squareImageView1)
+            squareImageView2=findViewById(R.id.squareImageView2)
+            squareImageView3=findViewById(R.id.squareImageView3)
+            squareImageView4=findViewById(R.id.squareImageView4)
+            squareImageView5=findViewById(R.id.squareImageView5)
+            squareImageView6=findViewById(R.id.squareImageView6)
+            squareImageView7=findViewById(R.id.squareImageView7)
+            squareImageView8=findViewById(R.id.squareImageView8)
+           /* squareImageView0.isClickable=true
+            squareImageView1.isClickable=true
+            squareImageView2.isClickable=true
+            squareImageView3.isClickable=true
+            squareImageView4.isClickable=true
+            squareImageView5.isClickable=true
+            squareImageView6.isClickable=true
+            squareImageView7.isClickable=true
+            squareImageView8.isClickable=true*/
             val random = Random()
             val randomIndex = random.nextInt(9)
-            val selectedImageView = squareImageViews[randomIndex]
+            val selectedImageView = squareImageViews[randomIndex]!!
             val randomNumber = getRandomItem(numbers)
-            if (selectedImageView?.tag == randomNumber) {
+            selectedImageView.setImageResource(getDrawableResource(randomNumber))
+
+            // Eğer seçilen kare daha önce atanmış bir sayıya sahipse, counter'ı artır
+            if (previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)) {
                 counter++
             }
 
-            // Aynı sayıyı aynı kareye atamamak için önceki sayıyı tag olarak sakla
-            selectedImageView?.tag = randomNumber
-            selectedImageView?.setImageResource(getDrawableResource(randomNumber))
+            // Seçilen karenin daha önce atanmış sayılarını güncelle
+            if (!previousNumbers.containsKey(randomIndex)) {
+                previousNumbers[randomIndex] = HashSet()
+            }
+            previousNumbers[randomIndex]!!.add(randomNumber)
+
+            // Kareye tıklama olayı
+            squareImageView0.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView1.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView2.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView3.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView4.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView5.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView6.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView7.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
+            squareImageView8.setOnClickListener {
+                // Daha önce bu kareye aynı sayı atanmış mı kontrol et
+                val correctMatch = previousNumbers.containsKey(randomIndex) && previousNumbers[randomIndex]!!.contains(randomNumber)
+                // Doğru eşleşme durumu
+                if (correctMatch) {
+                    counter2++
+                    Toast.makeText(this, "Correct Match", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Incorrect Matching", Toast.LENGTH_SHORT).show()
+                }
+            }
             Handler(Looper.getMainLooper()).postDelayed({
-                selectedImageView?.setImageResource(0)
+                selectedImageView.setImageResource(0)
                 stepCount++
                 showNextStep()
             }, 1500)
-
-
+        } else {
+            counter3 = ((counter2.toDouble() / counter.toDouble())*100)
+            counter4=counter3.toInt()
+            skor.text = "Success Rate:%$counter4"
+            previousNumbers.clear()
         }
-        else {
-            skor.text="Score:$counter"
-        }
-
     }
     private fun getDrawableResource(number: Int): Int {
         return when (number) {
@@ -103,3 +241,4 @@ class MainActivity : AppCompatActivity() {
 
 
 }
+

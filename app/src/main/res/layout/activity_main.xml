@@ -89,7 +89,7 @@
         android:id="@+id/skor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score: 0"
+        android:text="Success Rate:"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/squareImageView7"/>
